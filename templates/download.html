@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Prediction Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6dd5fa, #2980b9);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .download-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: #27ae60;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #2ecc71;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+
+        .back-home {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #fff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .back-home:hover {
+            color: #3498db;
+        }
+
+        /* Media Query for responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .back-home {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Download Your Prediction</h1>
+        <p>Your loan prediction results are ready! Click the button below to download your file.</p>
+        <a href="{{ file_url }}" download="loan_predictions.csv">
+            <button class="download-button">Download Predictions</button>
+        </a>
+        <div class="back-home" onclick="goHome()">← Back to Home</div>
+    </div>
+
+    <script>
+        function goHome() {
+            window.location.href = "/";
+        }
+    </script>
+</body>
+
+</html>

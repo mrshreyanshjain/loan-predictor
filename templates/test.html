@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test POST Request</title>
+    <script>
+        function postData() {
+            fetch('/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: document.getElementById('name').value })
+            }).then(res => res.json())
+              .then(data => document.getElementById('response').innerText = data.message);
+        }
+    </script>
+</head>
+<body>
+    <input id="name" placeholder="Enter name"><button onclick="postData()">Send</button>
+    <p id="response"></p>
+</body>
+</html>

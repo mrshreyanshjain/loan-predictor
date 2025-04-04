@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Prediction</title>
+</head>
+<body>
+    <h1>Loan Prediction System</h1>
+    <form id="loanForm" action="predict">
+        <label for="income">Income:</label>
+        <input type="number" id="income" name="income" required><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+        <label for="credit_score">Credit Score:</label>
+        <input type="number" id="credit_score" name="credit_score" required><br>
+        <button type="submit" id="submit">Check Eligibility</button>
+        <button type="reset">Clear</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('loanForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let income = document.getElementById('income').value;
+            let age = document.getElementById('age').value;
+            let credit_score = document.getElementById('credit_score').value;
+
+            fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    income: income,
+                    age: age,
+                    credit_score: credit_score
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerHTML =
+                    `Loan Eligibility: ${data.loan_eligibility}`;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
